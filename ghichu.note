@@ -1,0 +1,14 @@
+1. Cai đặt thư viện customize-cra : ghi đè cấu hình webpack
+2. Cài đặt thư viện babel-plugin-module-resolver
+// Use this:
+import MyUtilFn from 'utils/MyUtilFn';
+// Instead of that:
+import MyUtilFn from '../../../../utils/MyUtilFn';
+
+// And it also work with require calls
+// Use this:
+const MyUtilFn = require('utils/MyUtilFn');
+// Instead of that:
+const MyUtilFn = require('../../../../utils/MyUtilFn');
+3. Cấu hình prettier
+
