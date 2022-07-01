@@ -13,4 +13,4 @@ const MyUtilFn = require('../../../../utils/MyUtilFn');
 3. Cấu hình prettier
 4. Tạo global style
 5. Cấu hình router / Tạo layout
-
+6. Css cho layout
