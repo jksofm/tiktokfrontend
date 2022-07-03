@@ -1,0 +1,19 @@
+.menu-items{
+    width: 224px;
+    .menu-popper{
+      padding-bottom: 8px;
+      .ButtonMenu{
+        margin: 0;
+        font-size: 1.5rem;
+        padding: 14px;
+        width: 100%;
+        justify-content: flex-start;
+        border-radius: 0;
+       
+        &:hover {
+          background-color: rgba(22,24,35,0.03);
+        }
+      }
+    }
+    
+  }
