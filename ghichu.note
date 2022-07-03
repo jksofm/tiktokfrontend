@@ -14,3 +14,6 @@ const MyUtilFn = require('../../../../utils/MyUtilFn');
 4. Tạo global style
 5. Cấu hình router / Tạo layout
 6. Css cho layout
+7. Css cho header
+8. Sử dụng thư viện tippy react để làm phần popper cho search
+
