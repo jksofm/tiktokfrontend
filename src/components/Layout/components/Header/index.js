@@ -22,11 +22,26 @@ const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
     title: 'English',
+    submenu: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'Vi',
+          title: 'Tiếng Việt',
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
     title: 'Feedback and Help',
-    to: '/feedback'
+    to: '/feedback',
   },
   {
     icon: <FontAwesomeIcon icon={faKeyboard} />,
@@ -43,6 +58,10 @@ function Header() {
       setSearchResults([]);
     }, 3000);
   }, []);
+
+  const handleMenuChange = (Item) => {
+    console.log(Item);
+  };
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
@@ -95,7 +114,7 @@ function Header() {
             Log in
           </Button>
 
-          <PopperMenu items={MENU_ITEMS}>
+          <PopperMenu items={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx('more-btn')}>
               <FontAwesomeIcon icon={faEllipsisVertical} />
             </button>
