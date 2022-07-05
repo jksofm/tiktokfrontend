@@ -5,7 +5,7 @@ import styles from './HeaderSearch.module.scss';
 import classNames from 'classnames/bind';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { useEffect, useState, useRef, useInsertionEffect } from 'react';
-
+import { useDebounce } from '~/hooks';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
@@ -15,12 +15,13 @@ function HeaderSearch() {
   const [searchValue, setSearchValue] = useState('');
   const [showFocus, setShowFocus] = useState(true);
   const [loading, setLoading] = useState(false);
+  const debounced  = useDebounce(searchValue,500);
 
   const inputRef = useRef();
   console.log(inputRef);
 
   useEffect(() => {
-    if (!searchValue.trim()) {
+    if (!debounced .trim()) {
         setSearchResults([]);
       return;
     }
@@ -28,7 +29,7 @@ function HeaderSearch() {
     setTimeout(() => {
         fetch(
             `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-              searchValue,
+                debounced ,
             )}&type=less&fbclid=IwAR1-O5Qn9BjOXYIXm_Mhr2-WWnoTOLi0UXQNiA1DHzHh4dGNXGPz7qvlC44`,
           )
             .then((res) => res.json())
@@ -40,8 +41,8 @@ function HeaderSearch() {
               setLoading(false);
       
             })
-    },300)
-  }, [searchValue]);
+    },100)
+  }, [debounced]);
   const handleClear = () => {
     setSearchValue('');
 
