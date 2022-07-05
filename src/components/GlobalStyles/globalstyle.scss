@@ -1,5 +1,5 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap');
+
 
 :root {
   --primary-color: rgba(254, 44, 85, 1);
@@ -11,10 +11,35 @@
   --default-layout-width: 1150px;
   --default-layout-horizontal-spacer: 24px;
 }
+//Fonts
+@font-face {
+  font-family: ProximaNova;
+  src: url('../../assets/fonts/Proxima-Nova-Bold.woff');
+  font-weight: 400;
+}
+@font-face {
+  font-family: ProximaNova;
+  src: url('../../assets/fonts/Proxima-Nova-Bold.woff');
+  font-weight: 700;
+}
+@font-face {
+  font-family: ProximaNova;
+  src: url('../../assets/fonts/ProximaNova-Semibold.woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: Sofiapro;
+  src: url('../../assets/fonts/sofiapro-bold.woff2');
+  font-weight: 600;
+}
+
+
+//reset
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
 }
 
 html {
@@ -22,7 +47,7 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'ProximaNova', sans-serif;
   font-size: 1.6rem;
   line-height: 1.5;
   text-rendering: optimizeSpeed;

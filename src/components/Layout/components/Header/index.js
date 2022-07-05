@@ -26,6 +26,9 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
+import { UploadIcon,MessageIcon,InboxIcon } from '~/components/icons';
+import Image from '~/components/images';
+
 const MENU_ITEMS = [
   {
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -138,10 +141,33 @@ function Header() {
         <div className={cx('actions')}>
           {currentUser ? (
             <>
-              <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+              <Button className={cx('action-btn-upload')}  onClick={console.log('Hi')}>
+              <UploadIcon className = {cx('action-icon')}  />
+
+                <h4>Upload</h4>
+              </Button>
+              <Tippy delay={[0, 100]} content="Message" placement="bottom">
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon className={cx('action-icon')} icon={faCloudUpload} />
+                  {/* <FontAwesomeIcon className={cx('action-icon')} icon={faCloudUpload} /> */}
+                  <InboxIcon className = {cx('action-icon')}  />
+                  
                 </button>
+                
+                {/* <MessageIcon className = {cx('action-icon','action-mesage-icon')}  /> */}
+               
+                
+              </Tippy>
+              <Tippy delay={[0, 100]} content="Inbox" placement="bottom">
+                <button className={cx('action-btn','action-message-btn')}>
+                  {/* <FontAwesomeIcon className={cx('action-icon')} icon={faCloudUpload} /> */}
+                  <span className={cx('action-message-alert')}>12</span>
+                 
+                  <MessageIcon className = {cx('action-icon')}  />
+                </button>
+                
+               
+               
+                
               </Tippy>
             </>
           ) : (
@@ -160,14 +186,17 @@ function Header() {
               </Button>
             </>
           )}
-          <PopperMenu items={currentUser ? userMenu :MENU_ITEMS} onChange={handleMenuChange}>
+          <PopperMenu items={currentUser ===true ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <div className={cx('user-avatar-box')}>
-                <img
-                  src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/b1d9b1404b254f514a7755a52c0cb2f9~c5_100x100.jpeg?x-expires=1657159200&x-signature=NSoxMb7ZJvXkepb9MLFLOBP5iJ8%3D"
+              // <div className={cx('user-avatar-box')}>
+                <Image
+                  src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-006-giso/b1d9b1404b254f514a7755a52c0cb2f9~c5_100x100.jpeg?x-expires=1657159200&x-signature=NSoxMb7ZJvXkepb9MLFLOBP5iJ8%3D"
                   className={cx('user-avatar')}
+                  alt="No image"
+                  falseback = "https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/e86867bdcd0d0fa4649f4731b60677ad~c5_100x100.jpeg?x-expires=1657177200&x-signature=z7Py03Avpq%2FRT8WB2tJLL%2FUP5oo%3D"
+
                 />
-              </div>
+              // </div> 
             ) : (
               <button className={cx('more-btn')}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />
