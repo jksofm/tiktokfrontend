@@ -17,3 +17,34 @@ const MyUtilFn = require('../../../../utils/MyUtilFn');
 7. Css cho header
 8. Sử dụng thư viện tippy react để làm phần popper cho search
 
+<HeadLessTippy
+          interactive={true}
+          visible={searchResults.length > 0}
+          render={(attrs) => (
+            <div className={cx('search-results')} tabIndex="-1" {...attrs}>
+              <PopperWrapper>
+                <h4 className={cx('search-title')}>Accounts</h4>
+                <AccountItem />
+                <AccountItem />
+                <AccountItem />
+                <AccountItem />
+              </PopperWrapper>
+            </div>
+          )}
+        >
+          <div className={cx('search')}>
+            <input placeholder="Search accounts and videos..." spellCheck={false} />
+
+            <span></span>
+
+            <button className={cx('search-btn')}>
+              {/*search */}
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
+
+            <button className={cx('clear')}>
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+            <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
+          </div>
+        </HeadLessTippy>

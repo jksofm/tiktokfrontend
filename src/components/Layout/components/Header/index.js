@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { Menu as PopperMenu } from '~/components/Popper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -21,13 +20,12 @@ import {
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import images from '~/assets/images';
-import HeadLessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
-import { UploadIcon,MessageIcon,InboxIcon } from '~/components/icons';
+import { UploadIcon, MessageIcon, InboxIcon } from '~/components/icons';
 import Image from '~/components/images';
+import HeaderSearch from './HeaderSearch';
 
 const MENU_ITEMS = [
   {
@@ -70,7 +68,6 @@ const userMenu = [
     icon: <FontAwesomeIcon icon={faCoins} />,
     title: 'Get coins',
     to: '/coins',
-    
   },
   {
     icon: <FontAwesomeIcon icon={faGear} />,
@@ -82,20 +79,15 @@ const userMenu = [
     icon: <FontAwesomeIcon icon={faSignOut} />,
     title: 'Log out',
     to: '/logout',
-    separate : true,
+    separate: true,
   },
-]
+];
 
 const cx = classNames.bind(styles);
 
 function Header() {
   const currentUser = true;
-  const [searchResults, setSearchResults] = useState([]);
-  useEffect(() => {
-    setTimeout(() => {
-      setSearchResults([]);
-    }, 3000);
-  }, []);
+  
 
   const handleMenuChange = (Item) => {
     console.log(Item);
@@ -106,68 +98,41 @@ function Header() {
         <div className={cx('logo')}>
           <img src={images.logo} alt="logo" />
         </div>
-        <HeadLessTippy
-          interactive={true}
-          visible={searchResults.length > 0}
-          render={(attrs) => (
-            <div className={cx('search-results')} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <h4 className={cx('search-title')}>Accounts</h4>
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx('search')}>
-            <input placeholder="Search accounts and videos..." spellCheck={false} />
+        
 
-            <span></span>
+       <HeaderSearch  />
 
-            <button className={cx('search-btn')}>
-              {/*search */}
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
 
-            <button className={cx('clear')}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
-            <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-          </div>
-        </HeadLessTippy>
+
+
+
+
+
+
 
         <div className={cx('actions')}>
           {currentUser ? (
             <>
-              <Button className={cx('action-btn-upload')}  onClick={console.log('Hi')}>
-              <UploadIcon className = {cx('action-icon')}  />
+              <Button className={cx('action-btn-upload')} onClick={console.log('Hi')}>
+                <UploadIcon className={cx('action-icon')} />
 
                 <h4>Upload</h4>
               </Button>
               <Tippy delay={[0, 100]} content="Message" placement="bottom">
                 <button className={cx('action-btn')}>
                   {/* <FontAwesomeIcon className={cx('action-icon')} icon={faCloudUpload} /> */}
-                  <InboxIcon className = {cx('action-icon')}  />
-                  
+                  <InboxIcon className={cx('action-icon')} />
                 </button>
-                
+
                 {/* <MessageIcon className = {cx('action-icon','action-mesage-icon')}  /> */}
-               
-                
               </Tippy>
               <Tippy delay={[0, 100]} content="Inbox" placement="bottom">
-                <button className={cx('action-btn','action-message-btn')}>
+                <button className={cx('action-btn', 'action-message-btn')}>
                   {/* <FontAwesomeIcon className={cx('action-icon')} icon={faCloudUpload} /> */}
                   <span className={cx('action-message-alert')}>12</span>
-                 
-                  <MessageIcon className = {cx('action-icon')}  />
+
+                  <MessageIcon className={cx('action-icon')} />
                 </button>
-                
-               
-               
-                
               </Tippy>
             </>
           ) : (
@@ -186,18 +151,16 @@ function Header() {
               </Button>
             </>
           )}
-          <PopperMenu items={currentUser ===true ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+          <PopperMenu items={currentUser === true ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
               // <div className={cx('user-avatar-box')}>
-                <Image
-                  src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-006-giso/b1d9b1404b254f514a7755a52c0cb2f9~c5_100x100.jpeg?x-expires=1657159200&x-signature=NSoxMb7ZJvXkepb9MLFLOBP5iJ8%3D"
-                  className={cx('user-avatar')}
-                  alt="No image"
-                  falseback = "https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/e86867bdcd0d0fa4649f4731b60677ad~c5_100x100.jpeg?x-expires=1657177200&x-signature=z7Py03Avpq%2FRT8WB2tJLL%2FUP5oo%3D"
-
-                />
-              // </div> 
+              <Image
+                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/ec5114cce9483d32f1c5d55a7b39f108~c5_100x100.jpeg?x-expires=1657177200&x-signature=QoiASBPBWcTXNjo%2B57N3cyK%2B1cc%3D"
+                className={cx('user-avatar')}
+                // customFalseback="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/e86867bdcd0d0fa4649f4731b60677ad~c5_100x100.jpeg?x-expires=1657177200&x-signature=z7Py03Avpq%2FRT8WB2tJLL%2FUP5oo%3D"
+              />
             ) : (
+              // </div>
               <button className={cx('more-btn')}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />
               </button>
