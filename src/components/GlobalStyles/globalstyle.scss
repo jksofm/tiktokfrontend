@@ -39,3 +39,17 @@ a[href]{
  text-decoration: none;
  
 }
+//Custome tippy tooltip
+body .tippy-box{
+  background-color: rgba(84,84,84,0.92);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.0rem;
+  border-radius: 8px;
+}
+body .tippy-arrow{
+  color : rgba(84,84,84,0.92);
+}
+body .tippy-content {
+  padding : 8px 9px;
+}

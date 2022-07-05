@@ -10,7 +10,9 @@
         justify-content: flex-start;
         border-radius: 0;
         list-style: 1.8rem;
-       
+        &.separate{
+          border-top: 1px solid rgba(22,24,35,0.13);
+        };
         &:hover {
           background-color: rgba(22,24,35,0.03);
         }
@@ -23,6 +25,7 @@
   position: relative;
   height: 50px;
   margin-top: -8px;
+  
 
   }
 

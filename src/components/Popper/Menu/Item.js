@@ -6,7 +6,9 @@ const cx = classNames.bind(styles);
 function Item({ item, onClick }) {
   console.log(item);
   return (
-    <Button onClick={onClick} className={cx('ButtonMenu')} leftIcon={item.icon} to={item.to}>
+    <Button onClick={onClick} className={cx('ButtonMenu',{
+      separate : item.separate
+    })} leftIcon={item.icon} to={item.to}>
       <h4>{item.title}</h4>
     </Button>
   );
