@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './HeaderSearch.module.scss';
 import classNames from 'classnames/bind';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useInsertionEffect } from 'react';
 
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,25 +13,43 @@ const cx = classNames.bind(styles);
 function HeaderSearch() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [showFocus,setShowFocus] = useState(true);
+  const [showFocus, setShowFocus] = useState(true);
+  const [loading, setLoading] = useState(false);
+
   const inputRef = useRef();
   console.log(inputRef);
 
   useEffect(() => {
+    if (!searchValue.trim()) {
+        setSearchResults([]);
+      return;
+    }
+    setLoading(true);
     setTimeout(() => {
-      setSearchResults([1,2,3]);
-    }, 3000);
-  }, []);
-  const handleClear=()=>{
+        fetch(
+            `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
+              searchValue,
+            )}&type=less&fbclid=IwAR1-O5Qn9BjOXYIXm_Mhr2-WWnoTOLi0UXQNiA1DHzHh4dGNXGPz7qvlC44`,
+          )
+            .then((res) => res.json())
+            .then((res) => {
+              setSearchResults(res.data);
+              setLoading(false);
+            })
+            .catch(() => {
+              setLoading(false);
+      
+            })
+    },300)
+  }, [searchValue]);
+  const handleClear = () => {
     setSearchValue('');
-    setSearchResults([]);
+
     inputRef.current.focus();
-
-  }
-  const handleHideResult=()=>{
-      setShowFocus(false);
-
-  }
+  };
+  const handleHideResult = () => {
+    setShowFocus(false);
+  };
 
   return (
     <HeadLessTippy
@@ -41,10 +59,9 @@ function HeaderSearch() {
         <div className={cx('search-results')} tabIndex="-1" {...attrs}>
           <PopperWrapper>
             <h4 className={cx('search-title')}>Accounts</h4>
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
+            {searchResults.map((searchResult) => {
+              return <AccountItem key={searchResult.id} data={searchResult} />;
+            })}
           </PopperWrapper>
         </div>
       )}
@@ -58,7 +75,7 @@ function HeaderSearch() {
           }}
           placeholder="Search accounts and videos..."
           spellCheck={false}
-          onFocus={()=>{
+          onFocus={() => {
             setShowFocus(true);
           }}
         />
@@ -67,14 +84,11 @@ function HeaderSearch() {
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
 
-        <button
-          onClick={handleClear}
-          ref={inputRef}
-          className={cx('clear')}
-        >
-          {!!searchValue && <FontAwesomeIcon icon={faCircleXmark} />}
+        <button onClick={handleClear} ref={inputRef} className={cx('clear')}>
+          {!!searchValue && !loading && <FontAwesomeIcon icon={faCircleXmark} />}
         </button>
-        {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+       
+        {loading &&  <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> }
       </div>
     </HeadLessTippy>
   );
