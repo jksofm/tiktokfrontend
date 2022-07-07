@@ -7,7 +7,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { useEffect, useState, useRef } from 'react';
 import { useDebounce } from '~/hooks';
 import { faCircleXmark, faSpinner, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { searchAPI } from '~/api-services/searchService';
+import { searchAPI } from '~/Services/searchService';
 
 const cx = classNames.bind(styles);
 

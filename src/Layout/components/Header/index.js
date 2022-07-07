@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react';
 import { Menu as PopperMenu } from '~/components/Popper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCircleXmark,
-  faSpinner,
-  faMagnifyingGlass,
   faEllipsisVertical,
   faEarthAsia,
   faCircleQuestion,
   faKeyboard,
-  faCloudUpload,
-  faMessage,
   faUser,
-  faAslInterpreting,
   faCoins,
   faGear,
   faSignOut,
@@ -27,8 +20,7 @@ import { UploadIcon, MessageIcon, InboxIcon } from '~/components/icons';
 import Image from '~/components/images';
 import HeaderSearch from './HeaderSearch';
 import { Link } from 'react-router-dom';
-import routeConfig from '~/config/route';
-
+import config from '~/config';
 
 const MENU_ITEMS = [
   {
@@ -122,7 +114,6 @@ const MENU_ITEMS = [
           code: 'Français',
           title: 'Français',
         },
-
       ],
     },
   },
@@ -166,7 +157,6 @@ const cx = classNames.bind(styles);
 
 function Header() {
   const currentUser = true;
-  
 
   const handleMenuChange = (Item) => {
     console.log(Item);
@@ -174,22 +164,13 @@ function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <Link to = {routeConfig.Home}>
-        <div className={cx('logo')}>
-          <img src={images.logo} alt="logo" />
-        </div>
+        <Link to={config.routes.Home}>
+          <div className={cx('logo')}>
+            <img src={images.logo} alt="logo" />
+          </div>
         </Link>
-        
 
-       <HeaderSearch  />
-
-
-
-
-
-
-
-
+        <HeaderSearch />
 
         <div className={cx('actions')}>
           {currentUser ? (
@@ -232,7 +213,11 @@ function Header() {
               </Button>
             </>
           )}
-          <PopperMenu hideOnClick={true} items={currentUser === true ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+          <PopperMenu
+            hideOnClick={true}
+            items={currentUser === true ? userMenu : MENU_ITEMS}
+            onChange={handleMenuChange}
+          >
             {currentUser ? (
               // <div className={cx('user-avatar-box')}>
               <Image

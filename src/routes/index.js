@@ -2,31 +2,31 @@ import Home from '~/pages/Home';
 import Following from '~/pages/Following';
 import Profile from '~/pages/Profile';
 import Upload from '~/pages/Upload';
-import {HeaderOnly} from '~/components/Layout';
+import {HeaderOnly} from '~/Layout';
 import Search from '~/pages/Search';
-import routeConfig from '~/config/route';
+import config from '~/config';
 
 const publicRoutes = [
   {
-    path: routeConfig.Home,
+    path: config.routes.Home,
     component: Home,
   },
  
   {
-    path: routeConfig.Following,
+    path: config.routes.Following,
     component: Following,
   },
   {
-    path: routeConfig.Profile,
+    path: config.routes.Profile,
     component: Profile,
   },
   {
-    path: routeConfig.Upload,
+    path: config.routes.Upload,
     component: Upload,
     layout: HeaderOnly,
   },
   {
-    path: routeConfig.Search,
+    path: config.routes.Search,
     component: Search,
     layout : null,
   },

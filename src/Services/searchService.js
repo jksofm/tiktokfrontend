@@ -1,7 +1,7 @@
-import * as request from '~/utils/request';
+import * as httpRequest from '~/utils/httpRequest';
 export const searchAPI = async (q,type ='less') => {
     try{
-      const res =  await request.method({
+      const res =  await httpRequest.method({
         method: 'get',
         url: 'users/search',
 
