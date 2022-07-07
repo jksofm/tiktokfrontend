@@ -26,6 +26,9 @@ import Button from '~/components/Button';
 import { UploadIcon, MessageIcon, InboxIcon } from '~/components/icons';
 import Image from '~/components/images';
 import HeaderSearch from './HeaderSearch';
+import { Link } from 'react-router-dom';
+import routeConfig from '~/config/route';
+
 
 const MENU_ITEMS = [
   {
@@ -44,6 +47,82 @@ const MENU_ITEMS = [
           code: 'Vi',
           title: 'Tiếng Việt',
         },
+        {
+          type: 'language',
+          code: 'العربية',
+          title: 'العربية',
+        },
+        {
+          type: 'language',
+          code: 'বাঙ্গালি (ভারত)',
+          title: 'বাঙ্গালি (ভারত)',
+        },
+        {
+          type: 'language',
+          code: 'Cebuano (Pilipinas)',
+          title: 'Cebuano (Pilipinas)',
+        },
+        {
+          type: 'language',
+          code: 'Čeština (Česká republika)',
+          title: 'Čeština (Česká republika)',
+        },
+        {
+          type: 'language',
+          code: 'Deutsch',
+          title: 'Deutsch',
+        },
+        {
+          type: 'language',
+          code: 'Ελληνικά (Ελλάδα)',
+          title: 'Ελληνικά (Ελλάδα)',
+        },
+        {
+          type: 'language',
+          code: 'Español',
+          title: 'Español',
+        },
+        {
+          type: 'language',
+          code: 'Filipino (Pilipinas)',
+          title: 'Filipino (Pilipinas)',
+        },
+        {
+          type: 'language',
+          code: 'Français',
+          title: 'Français',
+        },
+        {
+          type: 'language',
+          code: 'Čeština (Česká republika)',
+          title: 'Čeština (Česká republika)',
+        },
+        {
+          type: 'language',
+          code: 'Deutsch',
+          title: 'Deutsch',
+        },
+        {
+          type: 'language',
+          code: 'Ελληνικά (Ελλάδα)',
+          title: 'Ελληνικά (Ελλάδα)',
+        },
+        {
+          type: 'language',
+          code: 'Español',
+          title: 'Español',
+        },
+        {
+          type: 'language',
+          code: 'Filipino (Pilipinas)',
+          title: 'Filipino (Pilipinas)',
+        },
+        {
+          type: 'language',
+          code: 'Français',
+          title: 'Français',
+        },
+
       ],
     },
   },
@@ -95,9 +174,11 @@ function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
+        <Link to = {routeConfig.Home}>
         <div className={cx('logo')}>
           <img src={images.logo} alt="logo" />
         </div>
+        </Link>
         
 
        <HeaderSearch  />
@@ -151,7 +232,7 @@ function Header() {
               </Button>
             </>
           )}
-          <PopperMenu items={currentUser === true ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+          <PopperMenu hideOnClick={true} items={currentUser === true ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
               // <div className={cx('user-avatar-box')}>
               <Image

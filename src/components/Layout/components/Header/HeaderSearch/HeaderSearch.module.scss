@@ -31,6 +31,7 @@
     font-size: 1.6rem;
     flex: 1;
     caret-color: var(--primary-color);
+    // font-family: var(--font-family);
   }
   input:not(:placeholder-shown) + .search-btn {
     color: rgba(18, 18, 20, 0.521);

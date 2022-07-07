@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
-function HeaderSubmenu({ title, onBack, children }) {
+function HeaderSubmenu({ title, onBack, children}) {
   return (
     <header className={cx('header-submenu')}>
       <button className={cx('back-btn')} onClick={onBack}>

@@ -1,45 +1,51 @@
-.menu-items{
-    width: 224px;
-    .menu-popper{
-      padding-bottom: 8px;
-      .ButtonMenu{
-        margin: 0;
-        font-size: 1.5rem;
-        padding: 14px;
-        width: 100%;
-        justify-content: flex-start;
-        border-radius: 0;
-        list-style: 1.8rem;
-        &.separate{
-          border-top: 1px solid rgba(22,24,35,0.13);
-        };
-        &:hover {
-          background-color: rgba(22,24,35,0.03);
-        }
+.menu-items {
+  width: 224px;
+  .menu-popper {
+    padding-bottom: 8px;
+    overflow-y: scroll;
+    
+    position: relative;
+    .ButtonMenu {
+      margin: 0;
+      font-size: 1.5rem;
+      padding: 14px;
+      width: 100%;
+      justify-content: flex-start;
+      border-radius: 0;
+      list-style: 1.8rem;
+      &.separate {
+        border-top: 1px solid rgba(22, 24, 35, 0.13);
+      }
+      &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
       }
     }
-    
   }
-  //Submenu
-.header-submenu{
-  position: relative;
+}
+//Submenu
+.header-submenu {
+  position: fixed;
   height: 50px;
-  margin-top: -8px;
-  
-
-  }
-
-.back-btn{
- width: 50px;
- height: 100%;
- background-color: transparent;
- cursor: pointer;
+  // margin-top: -8px;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: white;
+  z-index: 1;
+}
+.header-submenu + .menu-body{
+  margin-top: 30px;
+}
+.back-btn {
+  width: 50px;
+  height: 100%;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-.headerTitile-submenu{
+.headerTitile-submenu {
   position: absolute;
-  top : 50%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
