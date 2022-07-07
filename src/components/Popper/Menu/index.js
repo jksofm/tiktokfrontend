@@ -5,6 +5,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Item from './Item';
 import HeaderSubmenu from './Header';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
@@ -13,7 +14,7 @@ function Menu({ hideOnClick=false,children, items = [], onChange = defaultFn}) {
 
   const current = history[history.length - 1];
 
-  console.log('Current : ', current);
+  // console.log('Current : ', current);
   let newTitle;
   const RenderItem = () => {
     return current.data.map((item, key) => {
@@ -53,7 +54,7 @@ function Menu({ hideOnClick=false,children, items = [], onChange = defaultFn}) {
       render={(attrs) => (
         <div className={cx('menu-items')} tabIndex="-1" {...attrs}>
           <PopperWrapper className={cx('menu-popper')}>
-            {history.length > 1 && <HeaderSubmenu onBack={onBack} title="language" />}
+            {history.length > 1 && <HeaderSubmenu onBack={onBack} title={current.title} />}
             <div className={cx('menu-body')}>
             <RenderItem />
             </div>
@@ -65,6 +66,12 @@ function Menu({ hideOnClick=false,children, items = [], onChange = defaultFn}) {
       {children}
     </Tippy>
   );
+}
+Menu.propTypes = {
+  children: PropTypes.node.isRequired,
+  items: PropTypes.array.isRequired,
+  hideOnClick: PropTypes.bool,
+  onChange: PropTypes.func,
 }
 
 export default Menu;

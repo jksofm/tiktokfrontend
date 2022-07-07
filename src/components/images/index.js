@@ -3,24 +3,33 @@ import { useState, forwardRef } from 'react';
 import images from '../../assets/images';
 import styles from './images.module.scss';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
 
 const Image = forwardRef(({ src, className, customFalseback, ...props }, ref) => {
   const [falseback, setFalseBack] = useState('');
-   
-  const handleError = () => {
-    if(customFalseback){
-        setFalseBack(customFalseback)
-    }else{
 
-        setFalseBack(images.noImage);
+  const handleError = () => {
+    if (customFalseback) {
+      setFalseBack(customFalseback);
+    } else {
+      setFalseBack(images.noImage);
     }
   };
-  
 
   return (
-    <img ref={ref} className={classNames(styles.wrapper, className)} src={falseback|| src} {...props} onError={handleError} />
+    <img
+      ref={ref}
+      className={classNames(styles.wrapper, className)}
+      src={falseback || src}
+      {...props}
+      onError={handleError}
+    />
   );
 });
+Image.propTypes = {
+  src: PropTypes.string,
+  className: PropTypes.string,
+  customFalseback: PropTypes.string,
+};
 
 export default Image;
